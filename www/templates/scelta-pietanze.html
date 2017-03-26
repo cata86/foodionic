@@ -1,0 +1,15 @@
+<ion-view view-title="Scelta pietanze">
+  <ion-content>
+    Categoria selezionata: {{categoriaIdSelected}}
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="pietanza in pietanzeCategoria" type="item-text-wrap">
+        {{pietanza.descrizione}}
+      </ion-item>
+      <ion-list>
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="ingrediente in ingredientiPietanza" type="item-text-wrap">
+          {{ingrediente.ingredienteId}}
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </ion-content>
+</ion-view>

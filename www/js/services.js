@@ -1,86 +1,34 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
-
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
-    }
-  };
-})
-.factory('Tavoli', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
+.factory('Tavoli', function(_) {
   var tavoli = [{
     id: 0,
-    name: 'Tavolo 0',
-    lastText: 'Tavolo 0'
+    numero: 0,
+    descrizione: 'Tavolo 0',
+    stato: 'in_attesa'
   }, {
     id: 1,
-    name: 'Tavolo 1',
-    lastText: 'Tavolo 1'
+    numero: 1,
+    descrizione: 'Tavolo 1',
+    stato: 'in_attesa'
   }, {
     id: 2,
-    name: 'Tavolo 2',
-    lastText: 'Tavolo 2'
+    numero: 2,
+    descrizione: 'Tavolo 2',
+    stato: 'libero'
   }, {
     id: 3,
-    name: 'Tavolo 3',
-    lastText: 'Tavolo 3'
-  }, {
-    id: 4,
-    name: 'Tavolo 4',
-    lastText: 'Tavolo 4'
-  }, {
-    id: 5,
-    name: 'Tavolo 5',
-    lastText: 'Tavolo 5'
+    numero: 3,
+    descrizione: 'Tavolo 3',
+    stato: 'ordinato'
   }];
 
   return {
     all: function() {
       return tavoli;
+    },
+    inAttesa: function() {
+      return _.filter(tavoli, { 'stato': 'in_attesa' })
     },
     remove: function(tavolo) {
       tavoli.splice(tavoli.indexOf(tavolo), 1);
@@ -95,4 +43,165 @@ angular.module('starter.services', [])
     }
   };
 })
-;
+
+.factory('Categorie', function(_) {
+  var categorie = [{
+    id: 0,
+    icona: '',
+    descrizione: 'Extra'
+  }, {
+    id: 1,
+    icona: '',
+    descrizione: 'Primi'
+  }, {
+    id: 2,
+    icona: '',
+    descrizione: 'Secondi'
+  }, {
+    id: 3,
+    icona: '',
+    descrizione: 'Contorni'
+  }, {
+    id: 4,
+    icona: '',
+    descrizione: 'Pizze'
+  }, {
+    id: 5,
+    icona: '',
+    descrizione: 'Bevande'
+  }, {
+    id: 6,
+    icona: '',
+    descrizione: 'Dolci'
+  }];
+
+  return {
+    all: function() {
+      return categorie;
+    },
+    remove: function(categoria) {
+      categorie.splice(categorie.indexOf(categoria), 1);
+    },
+    get: function(categoriaId) {
+      for (var i = 0; i < categorie.length; i++) {
+        if (categorie[i].id === parseInt(categoriaId)) {
+          return categorie[i];
+        }
+      }
+      return null;
+    }
+  }
+})
+
+.factory('Pietanze', function(_) {
+  var pietanze = [{
+    id: 0,
+    icona: '',
+    descrizione: 'Pasta al ragù',
+    flgCoperto: 'false',
+    categoriaId: 1
+  }, {
+    id: 1,
+    icona: '',
+    descrizione: 'Pasta al pomodoro',
+    flgCoperto: 'false',
+    categoriaId: 1
+  }, {
+    id: 2,
+    icona: '',
+    descrizione: 'Grigliata di carne',
+    flgCoperto: 'false',
+    categoriaId: 2
+  }, {
+    id: 3,
+    icona: '',
+    descrizione: 'Coperti',
+    flgCoperto: 'true',
+    categoriaId: 0
+  }, {
+    id: 4,
+    icona: '',
+    descrizione: 'Piatto vuoto',
+    flgCoperto: 'false',
+    categoriaId: 0
+  }];
+
+  return {
+    all: function() {
+      return pietanze;
+    },
+    getPietanzeCategoria: function(categoriaId) {
+      return _.filter(pietanze, { 'categoriaId': categoriaId })
+    },
+    remove: function(pietanza) {
+      pietanze.splice(pietanze.indexOf(pietanza), 1);
+    },
+    get: function(pietanzaId) {
+      for (var i = 0; i < pietanze.length; i++) {
+        if (pietanze[i].id === parseInt(pietanzaId)) {
+          return pietanze[i];
+        }
+      }
+      return null;
+    }
+  }
+})
+
+.factory('Ingredienti', function(_) {
+  var ingredienti = [{
+    id: 0,
+    descrizione: 'Ragù'
+  }, {
+    id: 1,
+    descrizione: 'Pomodoro'
+  }];
+
+  return {
+    all: function() {
+      return ingredienti;
+    },
+    remove: function(ingrediente) {
+      ingredienti.splice(ingredienti.indexOf(ingrediente), 1);
+    },
+    get: function(ingredienteId) {
+      for (var i = 0; i < ingredienti.length; i++) {
+        if (ingredienti[i].id === parseInt(ingredienteId)) {
+          return ingredienti[i];
+        }
+      }
+      return null;
+    }
+  }
+})
+
+.factory('IngredientiPietanza', function(_) {
+  var ingredientiPietanza = [{
+    id: 0,
+    ingredienteId: 0,
+    pietanzaId: 0
+  }, {
+    id: 1,
+    ingredienteId: 1,
+    pietanzaId: 2
+  }];
+
+  return {
+    all: function() {
+      return ingredientiPietanza;
+    },
+    getIngredientiPietanza: function(pietanzaId) {
+      return _.filter(ingredientiPietanza, { 'pietanzaId': pietanzaId })
+    },
+    remove: function(ingredientePietanza) {
+      ingredientiPietanza.splice(ingredientiPietanza.indexOf(ingredientePietanza), 1);
+    },
+    get: function(ingredientePietanzaId) {
+      for (var i = 0; i < ingredientiPietanza.length; i++) {
+        if (ingredientiPietanza[i].id === parseInt(ingredientePietanzaId)) {
+          return ingredientiPietanza[i];
+        }
+      }
+      return null;
+    }
+  };
+});

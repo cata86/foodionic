@@ -1,0 +1,11 @@
+<ion-view view-title="Scelta tavolo">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="tavolo in tavoli" type="item-text-wrap">
+        <h2>{{tavolo.descrizione}}</h2>
+        <p>{{tavolo.stato}}</p>
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

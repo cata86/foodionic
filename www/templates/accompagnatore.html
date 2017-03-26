@@ -2,13 +2,13 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="tavolo in tavoli" type="item-text-wrap">
-        <h2>{{tavolo.name}}</h2>
-        <p>{{tavolo.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
         <ion-delete-button class="ion-minus-circled"
                            ng-click="elimina(tavolo)">
         </ion-delete-button>
+
+        <h2>{{tavolo.descrizione}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
         <ion-option-button class="button-assertive"
                            ng-click="accomoda(tavolo)">
           Accomoda

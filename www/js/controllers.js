@@ -2,31 +2,25 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
 .controller('AccompagnatoreCtrl', function($scope, $stateParams, Tavoli) {
   $scope.tavoli = Tavoli.all();
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+.controller('SceltaTavoloCtrl', function($scope, $stateParams, Tavoli) {
+  $scope.tavoli = $stateParams.inAttesa ? Tavoli.inAttesa() : Tavoli.all();
+})
+
+.controller('SceltaPietanzeCtrl', function($scope, $state, $stateParams, $ionicTabsDelegate, Categorie, Pietanze, IngredientiPietanza, Ingredienti) {
+
+  $scope.categoriaIdSelected = $stateParams.categoriaId;
+  $scope.categorie = Categorie.all();
+  console.log('test' + $scope.categoriaIdSelected);
+  $scope.pietanzeCategoria = Pietanze.getPietanzeCategoria(1);  //TODO
+
+  $scope.ingredientiPietanza = IngredientiPietanza.getIngredientiPietanza(0);  //TODO
+
+
+
+})
+
+;

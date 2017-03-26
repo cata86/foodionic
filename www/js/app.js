@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
-
+.constant('_', _)
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -32,14 +32,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
 
-  // Each tab has its own nav history stack:
+  .state('tabSceltaTavolo', {
+    url: '/tabSceltaTavolo',
+    abstract: true,
+    templateUrl: 'templates/tabs-scelta-tavolo.html'
+  })
 
+  .state('tabSceltaPietanze', {
+    url: '/tabSceltaPietanze',
+    abstract: true,
+    templateUrl: 'templates/tabs-scelta-pietanze.html',
+    controller: 'SceltaPietanzeCtrl'
+  })
+
+
+
+
+  // Each tab has its own nav history stack:
   .state('tab.dash', {
     url: '/dash',
     views: {
@@ -60,34 +75,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.account', {
-    url: '/account',
+  .state('tabSceltaTavolo.inAttesa', {
+    url: '/sceltaTavolo/inAttesa',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'sceltaTavoloInAttesa': {
+        templateUrl: 'templates/scelta-tavolo.html',
+        controller: 'SceltaTavoloCtrl',
+      }
+    },
+    params: { inAttesa: true }
+  })
+
+  .state('tabSceltaTavolo.tuttiITavoli', {
+    url: '/sceltaTavolo/tutti',
+    views: {
+      'sceltaTavolo': {
+        templateUrl: 'templates/scelta-tavolo.html',
+        controller: 'SceltaTavoloCtrl',
+      }
+    },
+     params: { inAttesa: false }
+  })
+
+  .state('tabSceltaPietanze.pietanzeCategoria', {
+    url: '/sceltaPietanze/:categoriaId',
+    params: {state_location: null},
+    views: {
+      'pietanze-categoria': {
+        templateUrl: 'templates/scelta-pietanze.html',
+        controller: 'SceltaPietanzeCtrl'
       }
     }
-  });
+  })
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
