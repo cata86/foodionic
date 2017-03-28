@@ -174,7 +174,7 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('IngredientiPietanza', function(_) {
+.factory('IngredientiPietanza', function(_, Ingredienti) {
   var ingredientiPietanza = [{
     id: 0,
     ingredienteId: 0,
@@ -190,7 +190,12 @@ angular.module('starter.services', [])
       return ingredientiPietanza;
     },
     getIngredientiPietanza: function(pietanzaId) {
-      return _.filter(ingredientiPietanza, { 'pietanzaId': pietanzaId })
+      var ingredPietanza = _.filter(ingredientiPietanza, { 'pietanzaId': pietanzaId })
+      for (var i = 0; i < ingredPietanza.length; i++) {
+        let ingrediente = Ingredienti.get(ingredPietanza[i].ingredienteId);
+        ingredPietanza[i].desIngrediente = ingrediente.descrizione;
+      }
+      return ingredPietanza;
     },
     remove: function(ingredientePietanza) {
       ingredientiPietanza.splice(ingredientiPietanza.indexOf(ingredientePietanza), 1);
