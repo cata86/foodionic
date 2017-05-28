@@ -21,6 +21,26 @@ angular.module('starter.services', [])
     numero: 3,
     descrizione: 'Tavolo 3',
     stato: 'ordinato'
+  },{
+    id: 4,
+    numero: 4,
+    descrizione: 'Tavolo 4',
+    stato: 'in_attesa'
+  }, {
+    id: 5,
+    numero: 5,
+    descrizione: 'Tavolo 5',
+    stato: 'in_attesa'
+  }, {
+    id: 6,
+    numero: 6,
+    descrizione: 'Tavolo 6',
+    stato: 'libero'
+  }, {
+    id: 7,
+    numero: 7,
+    descrizione: 'Tavolo 7',
+    stato: 'ordinato'
   }];
 
   return {

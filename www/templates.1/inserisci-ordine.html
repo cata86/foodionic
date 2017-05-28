@@ -1,19 +1,11 @@
 <ion-view view-title="Scelta tavolo">
-
-  <ion-content >
-
-    <div>
-
+  <ion-content>
     <ion-list>
-      <ion-scroll direction="y" class="wide-as-needed">
-
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="tavolo in tavoli" type="item-text-wrap">
         <h2>{{tavolo.descrizione}}</h2>
         <p>{{tavolo.stato}}</p>
 
       </ion-item>
-      </ion-scroll>
     </ion-list>
-    </div>
   </ion-content>
 </ion-view>

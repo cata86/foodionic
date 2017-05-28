@@ -1,0 +1,30 @@
+<ion-view view-title="Scelta pietanze">
+  <ion-nav-buttons >
+
+  </ion-nav-buttons>
+  <ion-content>
+    Categoria selezionata: {{categoriaIdSelected}}
+    <!--<ion-toggle></ion-toggle>-->
+    <!--forse da capire perchè con ion-list non si vede bene-->
+    <div class="item item-input-inset" style="padding: 0px" ng-repeat="pietanza in pietanzeCategoria">
+      <div class="row row-center">
+        <div class="col col-50">
+          <label class="item-wrapper">
+            <span>{{pietanza.descrizione}}</span>
+          </label>
+        </div>
+        <div class="col">
+          <div class="row row-center">
+            <button class="button button-small button-assertive" ng-click="cambiaQntOrdinata($index, 'minus')">
+              <i class="icon ion-minus"></i>
+            </button>
+            <input type="text" style="width: 50px; text-align:center" ng-model="qntOrdinata" readonly required>
+            <button class="button button-small button-calm" ng-click="cambiaQntOrdinata($index, 'plus')">
+              <i class="icon ion-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
